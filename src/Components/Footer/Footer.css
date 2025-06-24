@@ -1,0 +1,12 @@
+.footer_section {
+    background-color: var(--primary-color);
+}
+
+.footer_copy_right_text {
+    color: white;
+    font-family: var(--primary-fonts);
+    font-weight: 400;
+    font-size: 14px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+}

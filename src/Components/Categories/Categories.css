@@ -1,0 +1,22 @@
+.categories_card {
+    padding: 15px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+
+.categories_card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.categories_card a {
+    color: black;
+    font-family: var(--primary-fonts);
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    text-align: center;
+    display: block;
+}
