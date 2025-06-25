@@ -1,5 +1,5 @@
 import Categories from '../../Components/Categories/Categories'
-import PremiumToolsCard from '../../Components/PremiumToolsCard/PremiumToolsCard'
+import FreeToolsCard from '../../Components/FreeToolsCard/FreeToolsCard'
 import Layout from '../../Layout/Layout'
 import './Home.css'
 
@@ -35,21 +35,17 @@ const Home = () => {
         </div>
       </section>
 
-      <section className='premium_tools_section' id='premium_tools_section'>
+      <section className='free_tools_section' id='free_tools_section'>
         <div className="container">
           <div className="row">
-            <PremiumToolsCard />
-            <PremiumToolsCard />
-            <PremiumToolsCard />
-            <PremiumToolsCard />
-            <PremiumToolsCard />
-            <PremiumToolsCard />
-            <PremiumToolsCard />
-            <PremiumToolsCard />
-            <PremiumToolsCard />
-            <PremiumToolsCard />
-            <PremiumToolsCard />
-            <PremiumToolsCard />
+            <FreeToolsCard />
+            <FreeToolsCard />
+            <FreeToolsCard />
+            <FreeToolsCard />
+            <FreeToolsCard />
+            <FreeToolsCard />
+            <FreeToolsCard />
+            <FreeToolsCard />
           </div>
         </div>
       </section>

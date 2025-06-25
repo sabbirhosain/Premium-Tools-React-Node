@@ -25,7 +25,7 @@ const Navbar = () => {
             </div>
           </Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <FaBars /> </button>
-          
+
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               <li className="nav-item">
@@ -38,14 +38,14 @@ const Navbar = () => {
                 <a href="#categories_section" className='nav-link nav_link'>Categories</a>
               </li>
               <li className="nav-item">
-                <a href="#premium_tools_section" className='nav-link nav_link'>Free Tools</a>
+                <a href="#free_tools_section" className='nav-link nav_link'>Free Tools</a>
               </li>
               <li className="nav-item">
                 <NavLink to="#" className='nav-link nav_link'>Contact</NavLink>
               </li>
             </ul>
             <div className="d-flex align-items-center gap-2">
-              <Link to='#' className='nav_btn bg-danger'>Premium Tools</Link>
+              <Link to='/premium-tools' className='nav_btn bg-danger'>Premium Tools</Link>
               <Link to='#' className='nav_btn'><BiLogInCircle />Sign in</Link>
             </div>
           </div>
