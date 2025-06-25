@@ -19,6 +19,7 @@
     letter-spacing: 1px;
     text-align: center;
 }
+
 .categories_text p {
     color: black;
     font-family: var(--primary-fonts);
@@ -27,4 +28,10 @@
     text-transform: capitalize;
     letter-spacing: 1px;
     text-align: center;
+}
+
+.premium_tools_section {
+    width: 100%;
+    padding: 80px 0;
+    background-color: white;
 }

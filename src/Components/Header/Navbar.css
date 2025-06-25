@@ -60,10 +60,10 @@
     }
 }
 
-.active {
+/* .active {
     color: var(--primary-color) !important;
     font-family: var(--primary-fonts) !important;
-}
+} */
 
 .nav_btn {
     color: white;

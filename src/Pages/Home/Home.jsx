@@ -1,12 +1,14 @@
 import Categories from '../../Components/Categories/Categories'
+import PremiumToolsCard from '../../Components/PremiumToolsCard/PremiumToolsCard'
 import Layout from '../../Layout/Layout'
 import './Home.css'
 
 const Home = () => {
   return (
     <Layout>
-      <section className='hero_section'></section>
-      <section className='categories_section'>
+      <section className='hero_section' id='hero_section'></section>
+
+      <section className='categories_section' id='categories_section'>
         <div className="container">
           <div className="row justify-content-center mb-5">
             <div className="col-md-6">
@@ -29,6 +31,25 @@ const Home = () => {
             <Categories />
             <Categories />
             <Categories />
+          </div>
+        </div>
+      </section>
+
+      <section className='premium_tools_section' id='premium_tools_section'>
+        <div className="container">
+          <div className="row">
+            <PremiumToolsCard />
+            <PremiumToolsCard />
+            <PremiumToolsCard />
+            <PremiumToolsCard />
+            <PremiumToolsCard />
+            <PremiumToolsCard />
+            <PremiumToolsCard />
+            <PremiumToolsCard />
+            <PremiumToolsCard />
+            <PremiumToolsCard />
+            <PremiumToolsCard />
+            <PremiumToolsCard />
           </div>
         </div>
       </section>
