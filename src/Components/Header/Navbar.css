@@ -80,3 +80,16 @@
     align-items: center;
     gap: 5px;
 }
+
+.navbar-toggler:focus {
+    box-shadow: none !important;
+}
+
+.navbar-toggler {
+    color: var(--primary-color);
+    border-radius: 0px;
+    padding: 4px 5px;
+    display: flex;align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
