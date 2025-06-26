@@ -18,11 +18,11 @@ const PremiumToolsCard = ({ item }) => {
                     <span className='tools_service_rating'> <FaStar style={{ color: 'gold' }} /> 5 (100) </span>
                 </div>
                 <div className='tools_service_text_box'>
-                    <Link to='/premium-tools/' className='tools_service_title'>YouTube Premium Pro</Link>
-                    <span className='tools_service_descrip'>Subcription : 3 Month</span>
+                    <Link to='/premium-tools/tools-details' className='tools_service_title'>YouTube Premium Pro</Link>
+                    <span className='tools_service_descrip'>Duration : 3 Month</span>
                     <div className='d-flex align-items-center gap-1 pt-3'>
-                        <Link to={`/premium-tools/`} className='btn btn-success w-100 rounded-0 btn-sm'>BUY NOW</Link>
-                        <Link to={`/premium-tools/`} className='btn btn-outline-success w-100 rounded-0 btn-sm'>DETAILS</Link>
+                        <Link to={`/premium-tools/check-out`} className='btn btn-success w-100 rounded-0 btn-sm'>BUY NOW</Link>
+                        <Link to={`/premium-tools/tools-details`} className='btn btn-outline-success w-100 rounded-0 btn-sm'>DETAILS</Link>
                     </div>
                 </div>
             </div>

@@ -54,7 +54,7 @@
     width: 100%;
     font-size: 16px;
     font-weight: 600;
-     font-family: 'Times New Roman', Times, serif;
+    font-family: 'Times New Roman', Times, serif;
     padding: 4px 10px;
     background-color: orangered;
     clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);

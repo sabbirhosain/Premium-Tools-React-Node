@@ -47,7 +47,8 @@ button {
 
 .form-select,
 .form-label,
-.form-control {
+.form-control,
+.form-check-label {
   font-size: 14px;
   font-weight: 400;
   font-family: var(--primary-fonts);
