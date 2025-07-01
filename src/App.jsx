@@ -7,6 +7,8 @@ import CheckOut from "./Pages/CheckOut/CheckOut"
 import ToolsDetails from "./Pages/ToolsDetails/ToolsDetails"
 import OrderConfirm from "./Pages/OrderConfirm/OrderConfirm"
 import './App.css'
+import Login from "./Pages/Auth/Login"
+import Register from "./Pages/Auth/Register"
 
 const App = () => {
   return (
@@ -17,6 +19,8 @@ const App = () => {
         <Route path="/premium-tools/tools-details" element={<ToolsDetails />} />
         <Route path="/premium-tools/check-out" element={<CheckOut />} />
         <Route path="/premium-tools/order-confirm" element={<OrderConfirm />} />
+        <Route path="/user/login" element={<Login />} />
+        <Route path="/user/register" element={<Register />} />
       </Routes>
     </>
   )

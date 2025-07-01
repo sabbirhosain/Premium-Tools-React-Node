@@ -46,7 +46,7 @@ const Navbar = () => {
             </ul>
             <div className="d-flex align-items-center gap-2">
               <Link to='/premium-tools' className='nav_btn bg-danger'>Premium Tools</Link>
-              <Link to='#' className='nav_btn'><BiLogInCircle />Sign in</Link>
+              <Link to='/user/login' className='nav_btn'><BiLogInCircle />Sign in</Link>
             </div>
           </div>
         </div>
