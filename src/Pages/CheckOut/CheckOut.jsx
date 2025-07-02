@@ -62,38 +62,38 @@ const CheckOut = () => {
                                     <div className="ms-2 me-auto">
                                         <div className="order_details_title">Quentity</div>
                                     </div>
-                                    <span className="">14</span>
+                                    <span className="">0</span>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <div className="ms-2 me-auto">
                                         <div className="order_details_title">Price</div>
                                     </div>
-                                    <span className="">140 TK</span>
+                                    <span className="">0 TK</span>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <div className="ms-2 me-auto">
                                         <div className="order_details_title">Expired</div>
                                     </div>
-                                    <span className="">1 Month</span>
+                                    <span className="">0 Month</span>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <div className="ms-2 me-auto">
                                         <div className="order_details_title">Discount</div>
                                     </div>
-                                    <span className="">10 %</span>
+                                    <span className="">0 %</span>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <div className="ms-2 me-auto">
                                         <div className="order_details_title text-danger">Grand Total</div>
                                     </div>
-                                    <span className="text-danger">120 Tk</span>
+                                    <span className="text-danger">0 Tk</span>
                                 </li>
                             </ol>
-                            <div className='d-flex align-items-center my-3'>
+                            {/* <div className='d-flex align-items-center my-3'>
                                 <input type="text" className='form-control rounded-0' placeholder='Coupon Code' />
                                 <button type='button' className='btn btn-dark rounded-0'>Verify</button>
-                            </div>
-                            <div className="form-check mb-3">
+                            </div> */}
+                            <div className="form-check my-3">
                                 <input className="form-check-input rounded-0" type="checkbox" defaultValue id="checkDefault" required />
                                 <label className="form-check-label" htmlFor="checkDefault">I agree to the terms and conditions.</label>
                             </div>

@@ -2,8 +2,8 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import Layout from "../../Layout/Layout";
-import './Auth.css'
 import { login } from "../../Context/Base_Api_Url";
+import './Auth.css'
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
