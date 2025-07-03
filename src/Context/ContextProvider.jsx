@@ -11,8 +11,6 @@ const ContextProvider = ({ children }) => {
         setItemDetails(item);
     };
 
-    console.log(selectedPackage);
-    console.log(itemDetails);
 
 
 

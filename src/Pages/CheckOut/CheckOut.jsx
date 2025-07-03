@@ -1,8 +1,11 @@
 import { FaRegHandPointRight } from 'react-icons/fa6'
 import Layout from '../../Layout/Layout'
 import './CheckOut.css'
+import { useAppContextProvider } from '../../Context/ContextProvider'
 
 const CheckOut = () => {
+    const { selectedPackage, itemDetails } = useAppContextProvider()
+
     return (
         <Layout>
             <section className='checkout_section'>
@@ -50,43 +53,43 @@ const CheckOut = () => {
                             <hr className='hr' />
                             <ol className="list-group rounded-0">
                                 <li className="list-group-item">
-                                    <div className="order_details_title">Lorem ipsum dolor sit amet.</div>
+                                    <div className="order_details_title">{itemDetails.item_name ?? 'N/A'}</div>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <div className="ms-2 me-auto">
                                         <div className="order_details_title">Package Type</div>
                                     </div>
-                                    <span className="">Basic</span>
+                                    <span className="">{selectedPackage.package_name ?? 'N/A'}</span>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <div className="ms-2 me-auto">
-                                        <div className="order_details_title">Quentity</div>
+                                        <div className="order_details_title">Access Account</div>
                                     </div>
-                                    <span className="">0</span>
+                                    <span className="">{selectedPackage.quantity ?? 'N/A'}</span>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <div className="ms-2 me-auto">
                                         <div className="order_details_title">Price</div>
                                     </div>
-                                    <span className="">0 TK</span>
+                                    <span className="">{selectedPackage.price ?? ''} {selectedPackage.currency ?? 'N/A'}</span>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <div className="ms-2 me-auto">
                                         <div className="order_details_title">Expired</div>
                                     </div>
-                                    <span className="">0 Month</span>
+                                    <span className="">{selectedPackage.expired ?? ''} {selectedPackage.expired_type ?? 'N/A'}</span>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <div className="ms-2 me-auto">
                                         <div className="order_details_title">Discount</div>
                                     </div>
-                                    <span className="">0 %</span>
+                                    <span className="">{selectedPackage.discount ?? '0'} %</span>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <div className="ms-2 me-auto">
                                         <div className="order_details_title text-danger">Grand Total</div>
                                     </div>
-                                    <span className="text-danger">0 Tk</span>
+                                    <span className="text-danger">{selectedPackage.price ?? ''} {selectedPackage.currency ?? 'N/A'}</span>
                                 </li>
                             </ol>
                             {/* <div className='d-flex align-items-center my-3'>
