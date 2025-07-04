@@ -19,7 +19,7 @@
 
 .package_price {
     color: var(--primary-color);
-    font-family: 'Times New Roman', Times, serif;
+    font-family: sans-serif;
     font-weight: 600;
     font-size: 35px;
     letter-spacing: 1px;

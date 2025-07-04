@@ -1,50 +1,100 @@
-import { FaRegHandPointRight } from 'react-icons/fa6'
 import Layout from '../../Layout/Layout'
-import './CheckOut.css'
 import { useAppContextProvider } from '../../Context/ContextProvider'
+import { useNavigate } from 'react-router-dom'
+import { checkOut } from '../../Context/Base_Api_Url'
+import { useState } from 'react'
+import axios from 'axios'
+import './CheckOut.css'
 
 const CheckOut = () => {
+    const navigate = useNavigate();
     const { selectedPackage, itemDetails } = useAppContextProvider()
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [country, setCountry] = useState('');
+    const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
+    const [address, setAddress] = useState('');
+    const [message, setMessage] = useState('');
+    const [fieldError, setFieldError] = useState({});
+    const [loading, setLoading] = useState(false);
+    const resetFields = () => { setFirstName(''), setLastName(''), setCountry(''), setEmail(''), setPhone(''), setAddress(''), setMessage(''), setFieldError({}) };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setFieldError({});
+        setLoading(true);
+
+        try {
+            const response = await axios.post(checkOut, {
+                items: [{
+                    item_id: itemDetails._id,
+                    package_id: selectedPackage._id
+                }],
+                billing_address: {
+                    first_name: firstName,
+                    last_name: lastName,
+                    full_name: firstName + ' ' + lastName,
+                    email: email,
+                    phone: phone,
+                    country: country,
+                    address: address,
+                    message: message
+                },
+            });
+
+            if (response && response.data && response.data.success) {
+                navigate(`/premium-tools/order-confirm/${response.data.payload._id}`);
+                resetFields();
+            }
+
+        } catch (error) {
+            setFieldError(error.response.data || 'Internal Server Error');
+            console.error('Internal Server Error', error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <Layout>
             <section className='checkout_section'>
                 <div className="container">
-                    <form className="row justify-content-between">
+                    <form onSubmit={handleSubmit} className="row justify-content-between">
                         <div className="col-md-7">
                             <h2 className='checkout_title'>Belling Details</h2>
                             <hr className='hr' />
                             <div className="row">
                                 <div className="col-md-6 mb-3">
                                     <label className='form-label'>First Name</label>
-                                    <input type="text" className='form-control rounded-0' required />
+                                    <input type="text" value={firstName} onChange={(event) => setFirstName(event.target.value)} className='form-control rounded-0' required disabled={loading} />
                                 </div>
                                 <div className="col-md-6 mb-3">
                                     <label className='form-label'>Last Name</label>
-                                    <input type="text" className='form-control rounded-0' required />
+                                    <input type="text" value={lastName} onChange={(event) => setLastName(event.target.value)} className='form-control rounded-0' required disabled={loading} />
                                 </div>
                                 <div className="col-md-12 mb-3">
                                     <label className='form-label'>Email</label>
-                                    <input type="text" className='form-control rounded-0' required />
+                                    <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} className='form-control rounded-0' required disabled={loading} />
                                 </div>
                                 <div className="col-md-6 mb-3">
                                     <label className='form-label'>Phone</label>
-                                    <input type="text" className='form-control rounded-0' required />
+                                    <input type="tel" value={phone} onChange={(event) => setPhone(event.target.value)} className='form-control rounded-0' required disabled={loading} />
                                 </div>
                                 <div className="col-md-6 mb-3">
                                     <label className='form-label'>Country</label>
-                                    <select className='form-select rounded-0' required>
+                                    <select value={country} onChange={(event) => setCountry(event.target.value)} className='form-select rounded-0' disabled={loading}>
                                         <option value="bangladesh">Bangladesh</option>
                                         <option value="others">Others</option>
                                     </select>
                                 </div>
                                 <div className="col-md-12 mb-3">
                                     <label className='form-label'>Address</label>
-                                    <input type="text" className='form-control rounded-0' required />
+                                    <input type="text" value={address} onChange={(event) => setAddress(event.target.value)} className='form-control rounded-0' disabled={loading} />
                                 </div>
                                 <div className="col-md-12 mb-3">
                                     <label className='form-label'>Message</label>
-                                    <textarea rows='3' className='form-control rounded-0'></textarea>
+                                    <textarea rows='3' value={message} onChange={(event) => setMessage(event.target.value)} className='form-control rounded-0' disabled={loading}></textarea>
                                 </div>
                             </div>
                         </div>

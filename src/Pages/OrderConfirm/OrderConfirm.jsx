@@ -14,7 +14,7 @@ const OrderConfirm = () => {
                 <h5>Order Confirmed!</h5>
                 <h4>Your order has been placed successfully.</h4>
                 <p>A confirmation email with the details of your order has been sent to</p>
-                <strong>your.email@example.com</strong>
+                <strong>Sabbir@gmail.com</strong>
                 <p className='pt-5 text-danger'>আমরা কিছুক্ষণের মধ্যে আপনার সাথে যোগাযোগ করব। অনুগ্রহ করে অপেক্ষা করুন।</p>
               </div>
             </div>
