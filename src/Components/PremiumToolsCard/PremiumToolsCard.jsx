@@ -1,4 +1,3 @@
-import { TbListDetails } from "react-icons/tb";
 import { FaStar } from "react-icons/fa";
 import DEFAULT_IMAGE from '../../assets/tools-1.jpg'
 import { Link } from "react-router-dom";
