@@ -8,7 +8,7 @@ import './PremiumTools.css'
 const PremiumTools = () => {
     const [handleError, setHandleError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-    const [premiumTools, setPremiumTools] = useState({});
+    const [premiumTools, setPremiumTools] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
 
@@ -21,8 +21,7 @@ const PremiumTools = () => {
             if (response && response.data) {
                 setPremiumTools(response.data.payload);
                 setTotalPages(response.data.pagination?.total_page || 1);
-            }
-
+            } 
         } catch (error) {
             console.log(error.message);
             setHandleError(error.response.data || "Something went wrong");

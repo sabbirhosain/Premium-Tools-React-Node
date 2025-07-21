@@ -1,14 +1,39 @@
 import Layout from '../../Layout/Layout'
-import { useAppContextProvider } from '../../Context/ContextProvider'
-import { useNavigate } from 'react-router-dom'
-import { checkOut } from '../../Context/Base_Api_Url'
-import { useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { checkOut, itemDetails } from '../../Context/Base_Api_Url'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import './CheckOut.css'
 
 const CheckOut = () => {
+    const { id } = useParams();
+    const [premiumTools, setPremiumTools] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
+    const [handleError, setHandleError] = useState(null);
+
+    useEffect(() => {
+        const getPermiumTools = async () => {
+            try {
+                setIsLoading(true);
+                setHandleError(null);
+
+                const response = await axios.get(`${itemDetails}${id}`);
+                if (response && response.data) {
+                    setPremiumTools(response.data.payload);
+                }
+            } catch (error) {
+                console.log(error.message);
+                setHandleError(error.response.data || "Something went wrong");
+            } finally {
+                setIsLoading(false);
+            }
+        }
+        getPermiumTools();
+    }, [id]);
+
+    // =========================
+
     const navigate = useNavigate();
-    const { selectedPackage, itemDetails } = useAppContextProvider()
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [country, setCountry] = useState('');
@@ -27,10 +52,7 @@ const CheckOut = () => {
 
         try {
             const response = await axios.post(checkOut, {
-                items: [{
-                    item_id: itemDetails._id,
-                    package_id: selectedPackage._id
-                }],
+                item_id: premiumTools._id,
                 billing_address: {
                     first_name: firstName,
                     last_name: lastName,
@@ -42,6 +64,7 @@ const CheckOut = () => {
                     message: message
                 },
             });
+            console.log(response.data.payload);
 
             if (response && response.data && response.data.success) {
                 navigate(`/premium-tools/order-confirm/${response.data.payload._id}`);
@@ -84,6 +107,7 @@ const CheckOut = () => {
                                 <div className="col-md-6 mb-3">
                                     <label className='form-label'>Country</label>
                                     <select value={country} onChange={(event) => setCountry(event.target.value)} className='form-select rounded-0' disabled={loading}>
+                                        <option value="">Select</option>
                                         <option value="bangladesh">Bangladesh</option>
                                         <option value="others">Others</option>
                                     </select>
@@ -103,43 +127,49 @@ const CheckOut = () => {
                             <hr className='hr' />
                             <ol className="list-group rounded-0">
                                 <li className="list-group-item">
-                                    <div className="order_details_title">{itemDetails.item_name ?? 'N/A'}</div>
+                                    <div className="order_details_title fs-6">{premiumTools.item_name ?? 'N/A'}</div>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <div className="ms-2 me-auto">
                                         <div className="order_details_title">Package Type</div>
                                     </div>
-                                    <span className="">{selectedPackage.package_name ?? 'N/A'}</span>
+                                    <span className="">{premiumTools.package_name ?? 'N/A'}</span>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <div className="ms-2 me-auto">
-                                        <div className="order_details_title">Access Account</div>
+                                        <div className="order_details_title">Quentity</div>
                                     </div>
-                                    <span className="">{selectedPackage.quantity ?? 'N/A'}</span>
+                                    <span className="">{premiumTools.quantity ?? 'N/A'}</span>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <div className="ms-2 me-auto">
                                         <div className="order_details_title">Price</div>
                                     </div>
-                                    <span className="">{selectedPackage.price ?? ''} {selectedPackage.currency ?? 'N/A'}</span>
+                                    <span className="">{premiumTools.price ?? ''} {premiumTools.currency ?? 'N/A'}</span>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <div className="ms-2 me-auto">
                                         <div className="order_details_title">Expired</div>
                                     </div>
-                                    <span className="">{selectedPackage.expired ?? ''} {selectedPackage.expired_type ?? 'N/A'}</span>
+                                    <span className="">{premiumTools.expired ?? ''} {premiumTools.expired_type ?? 'N/A'}</span>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <div className="ms-2 me-auto">
                                         <div className="order_details_title">Discount</div>
                                     </div>
-                                    <span className="">{selectedPackage.discount ?? '0'} %</span>
+                                    <span className="">{premiumTools.discount ?? '0'} %</span>
+                                </li>
+                                <li className="list-group-item d-flex justify-content-between align-items-start">
+                                    <div className="ms-2 me-auto">
+                                        <div className="order_details_title">Send Money Fee</div>
+                                    </div>
+                                    <span className="">{premiumTools.cash_out_fee ?? '0'} {premiumTools.currency ?? 'N/A'}</span>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <div className="ms-2 me-auto">
                                         <div className="order_details_title text-danger">Grand Total</div>
                                     </div>
-                                    <span className="text-danger">{selectedPackage.price ?? ''} {selectedPackage.currency ?? 'N/A'}</span>
+                                    <span className="text-danger">{premiumTools.grand_total ?? '0'} {premiumTools.currency ?? 'N/A'}</span>
                                 </li>
                             </ol>
                             {/* <div className='d-flex align-items-center my-3'>

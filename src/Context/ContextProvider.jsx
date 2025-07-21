@@ -2,14 +2,6 @@ import { createContext, useContext, useState } from "react"
 
 const AppContextProvider = createContext()
 const ContextProvider = ({ children }) => {
-    // checkout data
-    const [selectedPackage, setSelectedPackage] = useState({});
-    const [itemDetails, setItemDetails] = useState({});
-
-    const selectPackage = (pkg, item) => {
-        setSelectedPackage(pkg);
-        setItemDetails(item);
-    };
 
 
 
@@ -21,7 +13,7 @@ const ContextProvider = ({ children }) => {
 
 
     return (
-        <AppContextProvider.Provider value={{ selectedPackage, itemDetails, selectPackage }}>
+        <AppContextProvider.Provider value={{}}>
             {children}
         </AppContextProvider.Provider>
     )

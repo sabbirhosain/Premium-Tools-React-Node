@@ -2,7 +2,7 @@ import Layout from '../../Layout/Layout'
 import DEFAULT_IMG from '../../assets/tools_details.png'
 import { TbArrowBadgeRight } from "react-icons/tb";
 import { FaRegHandPointRight } from "react-icons/fa6";
-import ToolsPackage from '../../Components/ToolsPackage/ToolsPackage';
+import { MdOutlineShoppingCart } from "react-icons/md";
 import { Link, useParams } from 'react-router-dom';
 import { itemDetails } from '../../Context/Base_Api_Url';
 import { useEffect, useState } from 'react';
@@ -65,7 +65,6 @@ const ToolsDetails = () => {
               <p className='tools_details_short_description'>{premiumTools ? premiumTools.short_description : ''}</p>
               <h5 className='tools_details_section_tagline'> <FaRegHandPointRight className='tools_details_section_tagline_icon' /> Additional features</h5>
               <div className="row">
-
                 {Array.isArray(premiumTools.features) && premiumTools.features.length > 0 ? (
                   premiumTools.features.map((feature, index) => (
                     <div className="col-6" key={index}>
@@ -77,26 +76,18 @@ const ToolsDetails = () => {
                     <p>No features available.</p>
                   </div>
                 )}
-
+                <div className="col-12 mt-3">
+                  <Link to={`/premium-tools/check-out/${id}`} className='tools_details_order_btn'><MdOutlineShoppingCart />Order Now</Link>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className='tools_details_packages'>
-        <div className="container">
-          <div className="row">
-
-            {Array.isArray(premiumTools.packages) && premiumTools.packages.map((data, index) => (<ToolsPackage key={index} data={data} item={premiumTools} />))}
-
-          </div>
-        </div>
-      </section>
-
       <section className='tools_details_description'>
         <div className="container">
-          <div className="row mb-5">
+          <div className="row mb-4">
             <div className="col-md-12">
               <h5 className='tools_details_section_tagline'> <FaRegHandPointRight className='tools_details_section_tagline_icon' />Long Description</h5>
               <p className='tools_details_long_description'>{premiumTools ? premiumTools.long_description : ''}</p>
@@ -112,7 +103,7 @@ const ToolsDetails = () => {
             <div className="col-md-6">
               <div className='text-center'>
                 <p className='tools_details_contact_support'>Contact Customer Support (Only Message Allow)</p>
-                <a href='' className='tools_details_contact_support_btn'>WhatsApp</a>
+                <a href="https://api.whatsapp.com/send/?phone=+8801780741598&text=I%20want%20to%20order%20premium%20tools.%20Please%20help%20me." target="_blank" rel="noopener noreferrer" className="tools_details_contact_support_btn">WhatsApp</a>
               </div>
             </div>
           </div>
