@@ -1,25 +1,25 @@
 import Layout from '../../Layout/Layout'
 import { useNavigate, useParams } from 'react-router-dom'
-import { checkOut, itemDetails } from '../../Context/Base_Api_Url'
+import { freeCheckOut, freeItemDetails, itemDetails } from '../../Context/Base_Api_Url'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import './CheckOut.css'
 
-const CheckOut = () => {
+const FreeCheckOut = () => {
     const { id } = useParams();
-    const [premiumTools, setPremiumTools] = useState({});
+    const [freeTools, setFreeTools] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [handleError, setHandleError] = useState(null);
 
     useEffect(() => {
-        const getPermiumTools = async () => {
+        const getFreeTools = async () => {
             try {
                 setIsLoading(true);
                 setHandleError(null);
 
-                const response = await axios.get(`${itemDetails}${id}`);
+                const response = await axios.get(`${freeItemDetails}${id}`);
                 if (response && response.data) {
-                    setPremiumTools(response.data.payload);
+                    setFreeTools(response.data.payload);
                 }
             } catch (error) {
                 console.log(error.message);
@@ -28,7 +28,7 @@ const CheckOut = () => {
                 setIsLoading(false);
             }
         }
-        getPermiumTools();
+        getFreeTools();
     }, [id]);
 
     // =========================
@@ -51,8 +51,8 @@ const CheckOut = () => {
         setLoading(true);
 
         try {
-            const response = await axios.post(checkOut, {
-                item_id: premiumTools._id,
+            const response = await axios.post(freeCheckOut, {
+                item_id: freeTools._id,
                 billing_address: {
                     first_name: firstName,
                     last_name: lastName,
@@ -102,11 +102,11 @@ const CheckOut = () => {
                                 </div>
                                 <div className="col-md-6 mb-3">
                                     <label className='form-label'>Phone</label>
-                                    <input type="number" value={phone} onChange={(event) => setPhone(event.target.value)} className='form-control rounded-0' required disabled={loading} />
+                                    <input type="tel" value={phone} onChange={(event) => setPhone(event.target.value)} className='form-control rounded-0' required disabled={loading} />
                                 </div>
                                 <div className="col-md-6 mb-3">
                                     <label className='form-label'>Country</label>
-                                    <select value={country} onChange={(event) => setCountry(event.target.value)} className='form-select rounded-0' disabled={loading} required>
+                                    <select value={country} onChange={(event) => setCountry(event.target.value)} className='form-select rounded-0' disabled={loading}>
                                         <option value="">Select</option>
                                         <option value="bangladesh">Bangladesh</option>
                                         <option value="others">Others</option>
@@ -114,7 +114,7 @@ const CheckOut = () => {
                                 </div>
                                 <div className="col-md-12 mb-3">
                                     <label className='form-label'>Address</label>
-                                    <input type="text" value={address} onChange={(event) => setAddress(event.target.value)} className='form-control rounded-0' disabled={loading} required />
+                                    <input type="text" value={address} onChange={(event) => setAddress(event.target.value)} className='form-control rounded-0' disabled={loading} />
                                 </div>
                                 <div className="col-md-12 mb-3">
                                     <label className='form-label'>Message</label>
@@ -127,49 +127,49 @@ const CheckOut = () => {
                             <hr className='hr' />
                             <ol className="list-group rounded-0">
                                 <li className="list-group-item">
-                                    <div className="order_details_title fs-6">{premiumTools.item_name ?? 'N/A'}</div>
+                                    <div className="order_details_title fs-6">{freeTools.item_name ?? 'N/A'}</div>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <div className="ms-2 me-auto">
                                         <div className="order_details_title">Package Type</div>
                                     </div>
-                                    <span className="">{premiumTools.package_name ?? 'N/A'}</span>
+                                    <span className="">{freeTools.package_name ?? 'N/A'}</span>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <div className="ms-2 me-auto">
                                         <div className="order_details_title">Quentity</div>
                                     </div>
-                                    <span className="">{premiumTools.quantity ?? 'N/A'}</span>
+                                    <span className="">{freeTools.quantity ?? 'N/A'}</span>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <div className="ms-2 me-auto">
                                         <div className="order_details_title">Price</div>
                                     </div>
-                                    <span className="">{premiumTools.price ?? ''} {premiumTools.currency ?? 'N/A'}</span>
+                                    <span className="">{freeTools.price ?? ''} {freeTools.currency ?? 'N/A'}</span>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <div className="ms-2 me-auto">
                                         <div className="order_details_title">Expired</div>
                                     </div>
-                                    <span className="">{premiumTools.expired ?? ''} {premiumTools.expired_type ?? 'N/A'}</span>
+                                    <span className="">{freeTools.expired ?? ''} {freeTools.expired_type ?? 'N/A'}</span>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <div className="ms-2 me-auto">
                                         <div className="order_details_title">Discount</div>
                                     </div>
-                                    <span className="">{premiumTools.discount ?? '0'} %</span>
+                                    <span className="">{freeTools.discount ?? '0'} %</span>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <div className="ms-2 me-auto">
                                         <div className="order_details_title">Send Money Fee</div>
                                     </div>
-                                    <span className="">{premiumTools.cash_out_fee ?? '0'} {premiumTools.currency ?? 'N/A'}</span>
+                                    <span className="">{freeTools.cash_out_fee ?? '0'} {freeTools.currency ?? 'N/A'}</span>
                                 </li>
                                 <li className="list-group-item d-flex justify-content-between align-items-start">
                                     <div className="ms-2 me-auto">
                                         <div className="order_details_title text-danger">Grand Total</div>
                                     </div>
-                                    <span className="text-danger">{premiumTools.grand_total ?? '0'} {premiumTools.currency ?? 'N/A'}</span>
+                                    <span className="text-danger">{freeTools.grand_total ?? '0'} {freeTools.currency ?? 'N/A'}</span>
                                 </li>
                             </ol>
                             {/* <div className='d-flex align-items-center my-3'>
@@ -178,7 +178,7 @@ const CheckOut = () => {
                             </div> */}
                             <div className="form-check my-3">
                                 <input className="form-check-input rounded-0" type="checkbox" defaultValue id="checkDefault" required />
-                                <label className="form-check-label" htmlFor="checkDefault">i want to order.</label>
+                                <label className="form-check-label" htmlFor="checkDefault">I agree to the terms and conditions.</label>
                             </div>
                             <div className='col-md-12'>
                                 <button type='submit' className='btn btn-dark rounded-0 w-100'>Order Now</button>
@@ -191,4 +191,4 @@ const CheckOut = () => {
     )
 }
 
-export default CheckOut
+export default FreeCheckOut

@@ -4,26 +4,26 @@ import { TbArrowBadgeRight } from "react-icons/tb";
 import { FaRegHandPointRight } from "react-icons/fa6";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { Link, useParams } from 'react-router-dom';
-import { itemDetails } from '../../Context/Base_Api_Url';
+import { freeItemDetails } from '../../Context/Base_Api_Url';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './ToolsDetails.css'
 
-const ToolsDetails = () => {
+const FreeToolsDetails = () => {
   const { id } = useParams();
-  const [premiumTools, setPremiumTools] = useState([]);
+  const [freeTools, setFreeTools] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [handleError, setHandleError] = useState(null);
 
   useEffect(() => {
-    const getPermiumTools = async () => {
+    const getFreeTools = async () => {
       try {
         setIsLoading(true);
         setHandleError(null);
 
-        const response = await axios.get(`${itemDetails}${id}`);
+        const response = await axios.get(`${freeItemDetails}${id}`);
         if (response && response.data) {
-          setPremiumTools(response.data.payload);
+          setFreeTools(response.data.payload);
         }
       } catch (error) {
         console.log(error.message);
@@ -33,7 +33,7 @@ const ToolsDetails = () => {
         setIsLoading(false);
       }
     }
-    getPermiumTools();
+    getFreeTools();
   }, [id]);
 
 
@@ -51,22 +51,17 @@ const ToolsDetails = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-6">
-              <img
-                src={premiumTools?.attachment?.secure_url || DEFAULT_IMG}
-                onError={(e) => e.target.src = DEFAULT_IMG}
-                className='tools_details_img'
-                alt={premiumTools?.item_name || 'Image'}
-              />
+              <img src={freeTools?.attachment?.secure_url || DEFAULT_IMG} onError={(e) => e.target.src = DEFAULT_IMG} className='tools_details_img' alt={freeTools?.item_name || 'Image'} />
             </div>
             <div className="col-md-6">
-              <h1 className='tools_details_title'>{premiumTools ? premiumTools.item_name : ''}</h1>
+              <h1 className='tools_details_title'>{freeTools ? freeTools.item_name : ''}</h1>
               <hr className='hr' />
               <h5 className='tools_details_section_tagline'> <FaRegHandPointRight className='tools_details_section_tagline_icon' /> Short Description</h5>
-              <p className='tools_details_short_description'>{premiumTools ? premiumTools.short_description : ''}</p>
+              <p className='tools_details_short_description'>{freeTools ? freeTools.short_description : ''}</p>
               <h5 className='tools_details_section_tagline'> <FaRegHandPointRight className='tools_details_section_tagline_icon' /> Additional features</h5>
               <div className="row">
-                {Array.isArray(premiumTools.features) && premiumTools.features.length > 0 ? (
-                  premiumTools.features.map((feature, index) => (
+                {Array.isArray(freeTools.features) && freeTools.features.length > 0 ? (
+                  freeTools.features.map((feature, index) => (
                     <div className="col-6" key={index}>
                       <span className='additional_details_list'><TbArrowBadgeRight /> {feature}</span>
                     </div>
@@ -77,7 +72,7 @@ const ToolsDetails = () => {
                   </div>
                 )}
                 <div className="col-12 mt-3">
-                  <Link to={`/premium-tools/check-out/${id}`} className='tools_details_order_btn'><MdOutlineShoppingCart />Order Now</Link>
+                  <Link to={`/free-tools/check-out/${id}`} className='tools_details_order_btn'><MdOutlineShoppingCart />Order Now</Link>
                 </div>
               </div>
             </div>
@@ -90,13 +85,13 @@ const ToolsDetails = () => {
           <div className="row mb-4">
             <div className="col-md-12">
               <h5 className='tools_details_section_tagline'> <FaRegHandPointRight className='tools_details_section_tagline_icon' />Long Description</h5>
-              <p className='tools_details_long_description'>{premiumTools ? premiumTools.long_description : ''}</p>
+              <p className='tools_details_long_description'>{freeTools ? freeTools.long_description : ''}</p>
             </div>
           </div>
           <div className="row mb-5">
             <div className="col-md-12">
               <h5 className='tools_details_section_tagline text-danger'> <FaRegHandPointRight className='tools_details_section_tagline_icon text-danger' />Important Note</h5>
-              <p className='tools_details_long_description'>{premiumTools ? premiumTools.notes : ''}</p>
+              <p className='tools_details_long_description'>{freeTools ? freeTools.notes : ''}</p>
             </div>
           </div>
           <div className="row justify-content-center">
@@ -113,4 +108,4 @@ const ToolsDetails = () => {
   )
 }
 
-export default ToolsDetails
+export default FreeToolsDetails

@@ -21,7 +21,6 @@ const OrderConfirm = () => {
           </div>
         </div>
       </section>
-
     </Layout >
   )
 }
