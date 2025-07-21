@@ -1,6 +1,6 @@
 import Layout from '../../Layout/Layout'
 import { useNavigate, useParams } from 'react-router-dom'
-import { freeCheckOut, freeItemDetails, itemDetails } from '../../Context/Base_Api_Url'
+import { freeCheckOut, freeItemDetails } from '../../Context/Base_Api_Url'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import './CheckOut.css'
@@ -64,7 +64,6 @@ const FreeCheckOut = () => {
                     message: message
                 },
             });
-            console.log(response.data.payload);
 
             if (response && response.data && response.data.success) {
                 navigate(`/premium-tools/order-confirm/${response.data.payload._id}`);
@@ -102,11 +101,11 @@ const FreeCheckOut = () => {
                                 </div>
                                 <div className="col-md-6 mb-3">
                                     <label className='form-label'>Phone</label>
-                                    <input type="tel" value={phone} onChange={(event) => setPhone(event.target.value)} className='form-control rounded-0' required disabled={loading} />
+                                    <input type="number" value={phone} onChange={(event) => setPhone(event.target.value)} className='form-control rounded-0' required disabled={loading} />
                                 </div>
                                 <div className="col-md-6 mb-3">
                                     <label className='form-label'>Country</label>
-                                    <select value={country} onChange={(event) => setCountry(event.target.value)} className='form-select rounded-0' disabled={loading}>
+                                    <select value={country} onChange={(event) => setCountry(event.target.value)} className='form-select rounded-0' disabled={loading} required>
                                         <option value="">Select</option>
                                         <option value="bangladesh">Bangladesh</option>
                                         <option value="others">Others</option>
@@ -114,7 +113,7 @@ const FreeCheckOut = () => {
                                 </div>
                                 <div className="col-md-12 mb-3">
                                     <label className='form-label'>Address</label>
-                                    <input type="text" value={address} onChange={(event) => setAddress(event.target.value)} className='form-control rounded-0' disabled={loading} />
+                                    <input type="text" value={address} onChange={(event) => setAddress(event.target.value)} className='form-control rounded-0' disabled={loading} required />
                                 </div>
                                 <div className="col-md-12 mb-3">
                                     <label className='form-label'>Message</label>
