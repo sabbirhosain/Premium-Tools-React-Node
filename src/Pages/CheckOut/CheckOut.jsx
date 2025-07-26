@@ -64,7 +64,6 @@ const CheckOut = () => {
                     message: message
                 },
             });
-            console.log(response.data.payload);
 
             if (response && response.data && response.data.success) {
                 navigate(`/premium-tools/order-confirm/${response.data.payload._id}`);
